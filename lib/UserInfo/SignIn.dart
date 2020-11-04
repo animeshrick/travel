@@ -1,15 +1,33 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  int _index;
+
+  @override
+  void initState() {
+    super.initState();
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      setState(() {
+        _index = result.index;
+      });
+      //print("Connectivity Status: " + result.index.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var name = 'assets/signin.jpg';
     var _height = MediaQuery.of(context).size.height;
     //var _width = MediaQuery.of(context).size.width;
     return Container(
-      color: Colors.white,
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -24,13 +42,12 @@ class SignIn extends StatelessWidget {
                 decoration: new BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.white,
-                      blurRadius: 2.0, // has the effect of softening the shadow
-                      spreadRadius:
-                          2.0, // has the effect of extending the shadow
+                      color: Colors.white38,
+                      blurRadius: 2.0,
+                      spreadRadius: 2.0,
                       offset: Offset(
-                        5.0, // horizontal, move right 10
-                        5.0, // vertical, move down 10
+                        5.0,
+                        5.0,
                       ),
                     )
                   ],
@@ -46,6 +63,7 @@ class SignIn extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
                         suffixIcon: Icon(Icons.person),
                         suffixIconConstraints: BoxConstraints(
@@ -61,6 +79,7 @@ class SignIn extends StatelessWidget {
                     TextFormField(
                       obscureText: true,
                       decoration: const InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
                         suffixIcon: Icon(Icons.lock_clock),
                         suffixIconConstraints: BoxConstraints(
@@ -70,6 +89,16 @@ class SignIn extends StatelessWidget {
                         labelText: 'Password *',
                       ),
                     ),
+
+                    ///0 wifi, 1 mobile data, 2 none
+                    if (_index == 2)
+                      Text(
+                        "No Internet Connection available",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
