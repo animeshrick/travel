@@ -1,28 +1,8 @@
-import 'package:connectivity/connectivity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:travel/UserInfo/SignUp.dart';
 
-class SignIn extends StatefulWidget {
-  @override
-  _SignInState createState() => _SignInState();
-}
+import 'Home.dart';
 
-class _SignInState extends State<SignIn> {
-  int _index;
-
-  @override
-  void initState() {
-    super.initState();
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      setState(() {
-        _index = result.index;
-      });
-      //print("Connectivity Status: " + result.index.toString());
-    });
-  }
-
+class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var name = 'assets/signin.jpg';
@@ -53,11 +33,26 @@ class _SignInState extends State<SignIn> {
                 child: Column(
                   children: [
                     Text(
-                      "Sign In",
+                      "Sign Up",
                       style: TextStyle(fontSize: 30),
                     ),
                     SizedBox(
                       height: 10,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        suffixIcon: Icon(Icons.contact_mail),
+                        suffixIconConstraints: BoxConstraints(
+                          minHeight: 32,
+                          minWidth: 32,
+                        ),
+                        labelText: 'Email / Phone No. *',
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
@@ -87,59 +82,49 @@ class _SignInState extends State<SignIn> {
                         labelText: 'Password *',
                       ),
                     ),
-
-                    ///0 wifi, 1 mobile data, 2 none
-                    if (_index == 2)
-                      Text(
-                        "No Internet Connection available",
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        suffixIcon: Icon(Icons.lock_clock),
+                        suffixIconConstraints: BoxConstraints(
+                          minHeight: 32,
+                          minWidth: 32,
+                        ),
+                        labelText: 'Confirm Password *',
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        suffixIcon: Icon(Icons.account_balance_outlined),
+                        suffixIconConstraints: BoxConstraints(
+                          minHeight: 32,
+                          minWidth: 32,
+                        ),
+                        labelText: 'Address *',
+                      ),
+                    ),
                     RaisedButton(
                       color: Colors.deepPurple,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           side: BorderSide(color: Colors.white)),
                       onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=> Home()));
                       },
-                      child: Text('SignIn'),
+                      child: Text('SignUp'),
                     )
                   ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (ctx) => SignUp()));
-                },
-                child: RichText(
-                  textScaleFactor: 0.3,
-                  text: TextSpan(
-                    style: DefaultTextStyle.of(context).style,
-                    children: [
-                      TextSpan(
-                        text: "Don\'t have an account! ",
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                      TextSpan(
-                        text: "Sign up",
-                        style: TextStyle(
-                          color: Colors.deepPurple,
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ],
