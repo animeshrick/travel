@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:travel/UserInfo/Home.dart';
 import 'package:travel/UserInfo/SignUp.dart';
 
 class SignIn extends StatefulWidget {
@@ -103,6 +104,8 @@ class _SignInState extends State<SignIn> {
                           borderRadius: BorderRadius.circular(20.0),
                           side: BorderSide(color: Colors.white)),
                       onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => Home()));
                       },
                       child: Text('SignIn'),
                     )

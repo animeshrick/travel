@@ -94,7 +94,7 @@ class MyHomePage extends StatelessWidget {
                 ),
                 Center(
                   child: Column(
-                   // mainAxisSize: MainAxisSize.max,
+                    // mainAxisSize: MainAxisSize.max,
                     children: [
                       RaisedButton(
                         child: Text("Register Now",

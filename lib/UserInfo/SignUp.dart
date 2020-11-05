@@ -120,7 +120,8 @@ class SignUp extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.0),
                           side: BorderSide(color: Colors.white)),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=> Home()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => Home()));
                       },
                       child: Text('SignUp'),
                     )
