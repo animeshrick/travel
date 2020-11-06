@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
     var listViewImage = "assets/listViewImage.jpg";
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: [
           Image.asset(image),
           Positioned(
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
-                    const Radius.circular(30.0),
+                    const Radius.circular(60.0),
                   ),
                 ),
                 filled: true,
@@ -80,9 +80,6 @@ class _HomeState extends State<Home> {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 350, 0, 50),
             child: ListView.builder(
-              padding: EdgeInsets.only(
-                top: 20,
-              ),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext ctx, index) {
